@@ -94,7 +94,7 @@ Using deep neural networks and convolutional neural networks to clone driving be
 
 ### [Project 6: PID Control](https://github.com/darrickz/Self_Driving_Car/tree/init_dev/CarND-PID-Control)
 
-This project is to develop a PID controller given the cross track error (CTE) and the velocity (mph) provided by simulator. The goal is the car can be successfully naviated around the track
+This project is to develop a PID controller given the cross track error (CTE) and the velocity (mph) provided by simulator. The goal is the car can be successfully navigated around the track
 
 <figure>
     <p align="center"><kbd>          
@@ -107,7 +107,7 @@ This project is to develop a PID controller given the cross track error (CTE) an
 
 ### [Project 7: Path Planning](https://github.com/darrickz/Self_Driving_Car/tree/init_dev/CarND-Path-Planning)
 
-The goal of this project is to safely navigate around a virtual highway with other traffic that is driving +-10 MPH of the 50 MPH speed limit. The car's localization and sensor fusion data are given, there is also a sparse map list of waypoints around the highway.
+The goal of this project is to safely navigate car around a virtual highway with other traffic that is driving +-10 MPH of the 50 MPH speed limit. The car's localization and sensor fusion data are given, there is also a sparse map list of waypoints around the highway.
 
 <figure>
     <p align="center"><kbd>          
@@ -120,7 +120,7 @@ The goal of this project is to safely navigate around a virtual highway with oth
 
 ### [Project 8: Programming Real Car](https://github.com/darrickz/Self_Driving_Car/tree/init_dev/CarND-Capstone)
 
-The goal of this project is to safely navigate around a virtual highway with other traffic that is driving +-10 MPH of the 50 MPH speed limit. The car's localization and sensor fusion data are given, there is also a sparse map list of waypoints around the highway.
+This project is to implement ROS nodes of core functionality of the autonomous vehicle system, including traffic light detection, control, and waypoint following! Code are tested using a simulator, and when the code is ready,it is submited to be run on Carla.
 
 <figure>
     <p align="center"><kbd>         
