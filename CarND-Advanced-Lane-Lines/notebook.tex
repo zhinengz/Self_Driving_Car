@@ -1,0 +1,742 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{writeup}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \subsection{Writeup Template}\label{writeup-template}
+
+\subsubsection{You can use this file as a template for your writeup if
+you want to submit it as a markdown file, but feel free to use some
+other method and submit a pdf if you
+prefer.}\label{you-can-use-this-file-as-a-template-for-your-writeup-if-you-want-to-submit-it-as-a-markdown-file-but-feel-free-to-use-some-other-method-and-submit-a-pdf-if-you-prefer.}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\textbf{Advanced Lane Finding Project}
+
+The goals / steps of this project are the following:
+
+\begin{itemize}
+\tightlist
+\item
+  Compute the camera calibration matrix and distortion coefficients
+  given a set of chessboard images.
+\item
+  Apply a distortion correction to raw images.
+\item
+  Use color transforms, gradients, etc., to create a thresholded binary
+  image.
+\item
+  Apply a perspective transform to rectify binary image ("birds-eye
+  view").
+\item
+  Detect lane pixels and fit to find the lane boundary.
+\item
+  Determine the curvature of the lane and vehicle position with respect
+  to center.
+\item
+  Warp the detected lane boundaries back onto the original image.
+\item
+  Output visual display of the lane boundaries and numerical estimation
+  of lane curvature and vehicle position.
+\end{itemize}
+
+\subsection{\texorpdfstring{\href{https://review.udacity.com/\#!/rubrics/571/view}{Rubric}
+Points}{Rubric Points}}\label{rubric-points}
+
+\subsubsection{Here I will consider the rubric points individually and
+describe how I addressed each point in my
+implementation.}\label{here-i-will-consider-the-rubric-points-individually-and-describe-how-i-addressed-each-point-in-my-implementation.}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\subsubsection{Writeup / README}\label{writeup-readme}
+
+\paragraph{\texorpdfstring{1. Provide a Writeup / README that includes
+all the rubric points and how you addressed each one. You can submit
+your writeup as markdown or pdf.
+\href{https://github.com/udacity/CarND-Advanced-Lane-Lines/blob/master/writeup_template.md}{Here}
+is a template writeup for this project you can use as a guide and a
+starting
+point.}{1. Provide a Writeup / README that includes all the rubric points and how you addressed each one. You can submit your writeup as markdown or pdf. Here is a template writeup for this project you can use as a guide and a starting point.}}\label{provide-a-writeup-readme-that-includes-all-the-rubric-points-and-how-you-addressed-each-one.-you-can-submit-your-writeup-as-markdown-or-pdf.-here-is-a-template-writeup-for-this-project-you-can-use-as-a-guide-and-a-starting-point.}
+
+You're reading it!
+
+\subsubsection{Camera Calibration}\label{camera-calibration}
+
+\paragraph{1. Briefly state how you computed the camera matrix and
+distortion coefficients. Provide an example of a distortion corrected
+calibration
+image.}\label{briefly-state-how-you-computed-the-camera-matrix-and-distortion-coefficients.-provide-an-example-of-a-distortion-corrected-calibration-image.}
+
+The code for this step is contained in the 2nd and 3rd cells of the
+notebook located in "Advaned\_Lane\_Finding.ipynb".
+
+In \(2nd\) cell, two variables are difined: 'objpoints' and 'imgpoints'.
+'objpoints' is defined with the shape of {[}9*6, 3{]} based on the
+number of the chessboard corners in the given camera calibration images.
+It is assumed that the chessboard is fixed on the (x, y) plane at z=0,
+therefore the object points are the same for each calibration image.
+Thus, \texttt{objp} is just a replicated array of coordinates, and
+\texttt{objpoints} will be appended with a copy of it every time when it
+is successfully detected all chessboard corners in a test image.
+\texttt{imgpoints} will be appended with the (x, y) pixel position of
+each of the corners in the tested image plane with each successful
+chessboard detection.
+
+In \(3rd\) cell, the output \texttt{objpoints} and \texttt{imgpoints}
+are used to compute the camera calibration and distortion coefficients
+using the \texttt{cv2.calibrateCamera()} function. Then this distortion
+correction is applied to the test image using the
+\texttt{cv2.undistort()} function and obtained this result:
+
+\begin{verbatim}
+<img  src="./camera_cal/calibration2.jpg" alt="Drawing" style="width: 350px;"/>
+<figcaption>Distorted</figcaption>
+</figure></td>
+\end{verbatim}
+
+\begin{verbatim}
+<img  src="./output_images/calibrated2.jpg" alt="Drawing" style="width: 350px;"/>
+<figcaption>Un_Distorted</figcaption></figure></td>
+\end{verbatim}
+
+\subsubsection{Pipeline (single images)}\label{pipeline-single-images}
+
+\paragraph{1. Provide an example of a distortion-corrected
+image.}\label{provide-an-example-of-a-distortion-corrected-image.}
+
+To demonstrate this step, the same distortion correction is appled to
+one of the test images like this one:
+
+\begin{verbatim}
+<img  src="./test_images/test6.jpg" alt="Drawing" style="width: 350px;"/>
+<figcaption>Distorted</figcaption>
+</figure></td>
+\end{verbatim}
+
+\begin{verbatim}
+<img  src="./output_images/calibrated_test6.jpg" alt="Drawing" style="width: 350px;"/>
+<figcaption>Un_Distorted</figcaption></figure></td>
+\end{verbatim}
+
+\paragraph{2. Describe how (and identify where in your code) you
+performed a perspective transform and provide an example of a
+transformed
+image.}\label{describe-how-and-identify-where-in-your-code-you-performed-a-perspective-transform-and-provide-an-example-of-a-transformed-image.}
+
+In \(4th\) cell, the code for perspective transform is included: First
+the source points and destination points are defined as shown below:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{src }\OperatorTok{=}\NormalTok{ np.float32([[}\DecValTok{205}\NormalTok{,}\DecValTok{720}\NormalTok{],[}\DecValTok{565}\NormalTok{,}\DecValTok{470}\NormalTok{],[}\DecValTok{720}\NormalTok{,}\DecValTok{470}\NormalTok{],[}\DecValTok{1100}\NormalTok{,}\DecValTok{720}\NormalTok{]])}
+\NormalTok{h, w }\OperatorTok{=}\NormalTok{ img.shape[:}\DecValTok{2}\NormalTok{]}
+\NormalTok{dst }\OperatorTok{=}\NormalTok{ np.float32([[}\DecValTok{350}\NormalTok{, }\DecValTok{720}\NormalTok{],[}\DecValTok{350}\NormalTok{, }\DecValTok{0}\NormalTok{],[w}\OperatorTok{-}\DecValTok{350}\NormalTok{, }\DecValTok{0}\NormalTok{],[w}\OperatorTok{-}\DecValTok{350}\NormalTok{, }\DecValTok{720}\NormalTok{]])}
+\end{Highlighting}
+\end{Shaded}
+
+This resulted in the following source and destination points:
+
+\begin{longtable}[]{@{}cc@{}}
+\toprule
+Source & Destination\tabularnewline
+\midrule
+\endhead
+205, 720 & 350, 720\tabularnewline
+565, 470 & 350, 0\tabularnewline
+720, 470 & 930, 0\tabularnewline
+1100, 720 & 930, 720\tabularnewline
+\bottomrule
+\end{longtable}
+
+It is verified that the perspective transform was working as expected by
+drawing the \texttt{src} and \texttt{dst} points onto a test image and
+its warped counterpart to verify that the lines appear parallel in the
+warped image.
+
+\begin{verbatim}
+<img  src="./output_images/source_points_drawn.jpg" alt="Drawing" style="width: 350px;"/>
+<figcaption>Test image</figcaption>
+</figure></td>
+\end{verbatim}
+
+\begin{verbatim}
+<img  src="./output_images/dest_points_drawn.jpg" alt="Drawing" style="width: 350px;"/>
+<figcaption>Warped image</figcaption></figure></td>
+\end{verbatim}
+
+\paragraph{3. Describe how (and identify where in your code) you used
+color transforms, gradients or other methods to create a thresholded
+binary image. Provide an example of a binary image
+result.}\label{describe-how-and-identify-where-in-your-code-you-used-color-transforms-gradients-or-other-methods-to-create-a-thresholded-binary-image.-provide-an-example-of-a-binary-image-result.}
+
+The color space been explored include: * RGB: in \(9th\) cell\\
+*** Red channel is chosen with threshold of 215/255 * HLS: in \(10th\)
+cell\\
+*** S channel is chosen with threshold of 210/255 * HSV: in \(11th\)
+cell\\
+*** V channel is chosen with threshold of 220/255 * The code for all
+three above color space are of the same template, therefore the code for
+LUV is ignored\\
+*** V channel in LUV is chosen with threshold of 155/255
+
+\begin{itemize}
+\tightlist
+\item
+  X Gradient is chosen with threshold of 14/100
+\end{itemize}
+
+The following table \textbf{\(\checkmark\)} shows the channels which
+generate highest lane information
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\paragraph{Observations of RGB color
+space:}\label{observations-of-rgb-color-space}
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+images & Red(215,255) & Green(195,255) & Blue(60,210)\tabularnewline
+\midrule
+\endhead
+straigh\_line1.jpg & \textbf{\(\checkmark\)} & \textbf{\(\checkmark\)}
+&\tabularnewline
+straigh\_line2.jpg & \textbf{\(\checkmark\)} & \textbf{\(\checkmark\)}
+&\tabularnewline
+test1.jpg & \textbf{\(\checkmark\)} & &\tabularnewline
+test2.jpg & \textbf{\(\checkmark\)} & \textbf{\(\checkmark\)}
+&\tabularnewline
+test3.jpg & \textbf{\(\checkmark\)} & \textbf{\(\checkmark\)}
+&\tabularnewline
+test4.jpg & \textbf{\(\checkmark\)} & &\tabularnewline
+test5.jpg & & &\tabularnewline
+test6.jpg & \textbf{\(\checkmark\)} & &\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{verbatim}
+<figcaption>Warped Image</figcaption>
+<img  src="./output_images/warped_straight_lines1.jpg" alt="Drawing" style="width: 350px;"/>
+</figure></td>
+\end{verbatim}
+
+\begin{verbatim}
+<figcaption>Lanes info in Red channel</figcaption>
+<img  src="./output_images/straight_lines1R_RGB.jpg" alt="Drawing" style="width: 350px;"/>
+\end{verbatim}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\paragraph{Observations of HLS color
+space:}\label{observations-of-hls-color-space}
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+images & H(14,85) & L(120,255) & S(210,255)\tabularnewline
+\midrule
+\endhead
+straigh\_line1.jpg & & \textbf{\(\checkmark\)} &\tabularnewline
+straigh\_line2.jpg & & \textbf{\(\checkmark\)} &\tabularnewline
+test1.jpg & & & \textbf{\(\checkmark\)}\tabularnewline
+test2.jpg & & \textbf{\(\checkmark\)} &\tabularnewline
+test3.jpg & & \textbf{\(\checkmark\)} &\tabularnewline
+test4.jpg & & & \textbf{\(\checkmark\)}\tabularnewline
+test5.jpg & & &\tabularnewline
+test6.jpg & & \textbf{\(\checkmark\)} &\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{verbatim}
+<figcaption>Warped Image</figcaption>
+<img  src="./output_images/warped_straight_lines1.jpg" alt="Drawing" style="width: 350px;"/>
+</figure></td>
+\end{verbatim}
+
+\begin{verbatim}
+<figcaption>Lanes info in S/HLS channel</figcaption>
+<img  src="./output_images/straight_lines1S_HLS.jpg" alt="Drawing" style="width: 350px;"/>
+\end{verbatim}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\paragraph{Observations of HSV color
+space:}\label{observations-of-hsv-color-space}
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+images & H(14,85) & S(80,255) & V(220,255)\tabularnewline
+\midrule
+\endhead
+straigh\_line1.jpg & & & \textbf{\(\checkmark\)}\tabularnewline
+straigh\_line2.jpg & & & \textbf{\(\checkmark\)}\tabularnewline
+test1.jpg & & & \textbf{\(\checkmark\)}\tabularnewline
+test2.jpg & & & \textbf{\(\checkmark\)}\tabularnewline
+test3.jpg & & & \textbf{\(\checkmark\)}\tabularnewline
+test4.jpg & & & \textbf{\(\checkmark\)}\tabularnewline
+test5.jpg & & &\tabularnewline
+test6.jpg & & & \textbf{\(\checkmark\)}\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{verbatim}
+<figcaption>Warped Image</figcaption>
+<img  src="./output_images/warped_straight_lines1.jpg" alt="Drawing" style="width: 350px;"/>
+</figure></td>
+\end{verbatim}
+
+\begin{verbatim}
+<figcaption>Lanes info in V/HSV channel</figcaption>
+<img  src="./output_images/straight_lines1V_HSV.jpg" alt="Drawing" style="width: 350px;"/>
+\end{verbatim}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\paragraph{Observations of gradient:}\label{observations-of-gradient}
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+images & X(14,100) & Y(0,255) & ABS(0,255)\tabularnewline
+\midrule
+\endhead
+straigh\_line1.jpg & \textbf{\(\checkmark\)} & &\tabularnewline
+straigh\_line2.jpg & \textbf{\(\checkmark\)} & &\tabularnewline
+test1.jpg & & &\tabularnewline
+test2.jpg & \textbf{\(\checkmark\)} & &\tabularnewline
+test3.jpg & \textbf{\(\checkmark\)} & &\tabularnewline
+test4.jpg & & &\tabularnewline
+test5.jpg & \textbf{\(\checkmark\)} & &\tabularnewline
+test6.jpg & \textbf{\(\checkmark\)} & &\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{verbatim}
+<figcaption>Warped Image</figcaption>
+<img  src="./output_images/warped_straight_lines1.jpg" alt="Drawing" style="width: 350px;"/>
+</figure></td>
+\end{verbatim}
+
+\begin{verbatim}
+<figcaption>Lanes info in X_gradient channel</figcaption>
+<img  src="./output_images/straight_lines1X_Gradient.jpg" alt="Drawing" style="width: 350px;"/>
+\end{verbatim}
+
+\subsubsection{The final combined image
+is:}\label{the-final-combined-image-is}
+
+The final combined image is the sume of all above images, then set pixel
+value \textless{}=1 as 0
+
+\begin{verbatim}
+<figcaption>            Lanes info in final combined image</figcaption>
+<img  src="./output_images/straight_lines1_binary.jpg" alt="Drawing" style="width: 350px;"/>
+\end{verbatim}
+
+\paragraph{4. Describe how (and identify where in your code) you
+identified lane-line pixels and fit their positions with a
+polynomial?}\label{describe-how-and-identify-where-in-your-code-you-identified-lane-line-pixels-and-fit-their-positions-with-a-polynomial}
+
+This step is done in cell \(14\)\\
+Function 'find\_lane\_pixels(binary\_warped)' is to find pixels
+belonging to left lane and right lane.
+
+The histogram of the first video frame is calculated, and the two
+highest points of the histogram are taken as the lane starting points.
+
+Two sliding windows are defined for both left and right lanes and been
+moved upward to search all potential lane pixels.
+
+The a 2nd-order polynomial lines are calculated to fit those lane
+pixels.
+
+\begin{verbatim}
+<figcaption>Original Image</figcaption>
+<img  src="./output_images/warped_test6.jpg" alt="Drawing" style="width: 350px;"/>
+</figure></td>
+\end{verbatim}
+
+\begin{verbatim}
+<figcaption>Curve_fit image</figcaption>
+<img  src="./output_images/curve_fit.png" alt="Drawing" style="width: 350px;"/>
+\end{verbatim}
+
+\paragraph{5. Describe how (and identify where in your code) you
+calculated the radius of curvature of the lane and the position of the
+vehicle with respect to
+center.}\label{describe-how-and-identify-where-in-your-code-you-calculated-the-radius-of-curvature-of-the-lane-and-the-position-of-the-vehicle-with-respect-to-center.}
+
+The curvatures are calculated in cell \(14\) First define meters per pix
+in both x and y direction
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{my_per_pix }\OperatorTok{=} \DecValTok{30}\OperatorTok{/} \DecValTok{720}
+\NormalTok{mx_per_pix }\OperatorTok{=} \FloatTok{3.7}\OperatorTok{/} \DecValTok{700}
+\end{Highlighting}
+\end{Shaded}
+
+Then find the 2nd order polynominal curve fitting for both left and
+right lanes
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{left_fit }\OperatorTok{=}\NormalTok{ np.polyfit(lefty, leftx, }\DecValTok{2}\NormalTok{)}
+\NormalTok{right_fit }\OperatorTok{=}\NormalTok{ np.polyfit(righty, rightx, }\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Then conver those coefficients 'left\_fit' and 'right\_fit', which have
+unit in pixels, to unit in 'meter'
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{left_fit_cr_0 }\OperatorTok{=}\NormalTok{ mx_per_pix }\OperatorTok{/}\NormalTok{ my_per_pix}\OperatorTok{**}\DecValTok{2} \OperatorTok{*}\NormalTok{ left_fit[}\DecValTok{0}\NormalTok{]}
+\NormalTok{left_fit_cr_1 }\OperatorTok{=}\NormalTok{ mx_per_pix }\OperatorTok{/}\NormalTok{ my_per_pix }\OperatorTok{*}\NormalTok{ left_fit[}\DecValTok{1}\NormalTok{]}
+\NormalTok{right_fit_cr_0 }\OperatorTok{=}\NormalTok{ mx_per_pix }\OperatorTok{/}\NormalTok{ my_per_pix}\OperatorTok{**}\DecValTok{2} \OperatorTok{*}\NormalTok{ right_fit[}\DecValTok{0}\NormalTok{]}
+\NormalTok{right_fit_cr_1 }\OperatorTok{=}\NormalTok{ mx_per_pix }\OperatorTok{/}\NormalTok{ my_per_pix }\OperatorTok{*}\NormalTok{ right_fit[}\DecValTok{1}\NormalTok{]    }
+\end{Highlighting}
+\end{Shaded}
+
+The curvature is calculated as:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{left_curverad }\OperatorTok{=}\NormalTok{ ((}\DecValTok{1} \OperatorTok{+}\NormalTok{ (}\DecValTok{2}\OperatorTok{*}\NormalTok{left_fit_cr_0}\OperatorTok{*}\NormalTok{y_eval}\OperatorTok{*}\NormalTok{my_per_pix }\OperatorTok{+}\NormalTok{ left_fit_cr_1)}\OperatorTok{**}\DecValTok{2}\NormalTok{)}\OperatorTok{**}\FloatTok{1.5}\NormalTok{) }\OperatorTok{/}\NormalTok{ np.absolute(}\DecValTok{2}\OperatorTok{*}\NormalTok{left_fit_cr_0)}
+\NormalTok{right_curverad }\OperatorTok{=}\NormalTok{ ((}\DecValTok{1} \OperatorTok{+}\NormalTok{ (}\DecValTok{2}\OperatorTok{*}\NormalTok{right_fit_cr_0}\OperatorTok{*}\NormalTok{y_eval}\OperatorTok{*}\NormalTok{my_per_pix }\OperatorTok{+}\NormalTok{ right_fit_cr_1)}\OperatorTok{**}\DecValTok{2}\NormalTok{)}\OperatorTok{**}\FloatTok{1.5}\NormalTok{) }\OperatorTok{/}\NormalTok{ np.absolute(}\DecValTok{2}\OperatorTok{*}\NormalTok{right_fit_cr_0)}
+\end{Highlighting}
+\end{Shaded}
+
+based on the following equation:
+
+\begin{equation*}
+R_{curve} =\frac{(1+(2Ay+B)^2)^{\frac32})}{|2A|}
+\end{equation*}
+
+\paragraph{6. Provide an example image of your result plotted back down
+onto the road such that the lane area is identified
+clearly.}\label{provide-an-example-image-of-your-result-plotted-back-down-onto-the-road-such-that-the-lane-area-is-identified-clearly.}
+
+I implemented this step in cell \(15\). Here is an example of my result
+on a test image:
+
+\begin{verbatim}
+<figcaption>Image with lane area</figcaption>
+<img  src="./output_images/lane_area.png" alt="Drawing" style="width: 350px;"/>
+\end{verbatim}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\subsubsection{Pipeline (video)}\label{pipeline-video}
+
+\paragraph{1. Provide a link to your final video output. Your pipeline
+should perform reasonably well on the entire project video (wobbly lines
+are ok but no catastrophic failures that would cause the car to drive
+off the
+road!).}\label{provide-a-link-to-your-final-video-output.-your-pipeline-should-perform-reasonably-well-on-the-entire-project-video-wobbly-lines-are-ok-but-no-catastrophic-failures-that-would-cause-the-car-to-drive-off-the-road.}
+
+Here's a \href{./output_videos/final_video.mp4}{link to my video result}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\subsubsection{Discussion}\label{discussion}
+
+\paragraph{1. Briefly discuss any problems / issues you faced in your
+implementation of this project. Where will your pipeline likely fail?
+What could you do to make it more
+robust?}\label{briefly-discuss-any-problems-issues-you-faced-in-your-implementation-of-this-project.-where-will-your-pipeline-likely-fail-what-could-you-do-to-make-it-more-robust}
+
+If there is no clear histogram peaks in the first image frame, it will
+be hard to find these two starting points\\
+If there is no clear starting points for those frames in the middle of
+video, the ending point of the past frame can be saved and used as the
+starting point of future frames\\
+If there is no clear starting points for \(several\) \(consecutive\)
+frames, the lane pixels of past several frams can be save and a
+2nd-order polynomial fitting can be made to predict the lane pixels for
+the future frames\\
+In this project, only X direction gradient is used. If there is a sharp
+turn, the combined (of x and y direction) could be better
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
