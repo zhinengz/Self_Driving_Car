@@ -49,6 +49,15 @@ In this project, a convolutional neural network is implemented to classify traff
 <figure>
     <img  src="./images/traffic_sign.png" alt="Drawing" style="height: 500 width: 1000px;"/>
     <p align="center">Data Distribution</p>
+</figure>
+
+<figure>
+    <p align="center">
+    <kbd>
+    <img  src="./images/performance.png" alt="Drawing" style="width: 500px;"/>
+    </kbd></p>
+    <p align="center">Accuracy</p>
+</figure>
 
 ---
 
